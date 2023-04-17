@@ -53,17 +53,17 @@ def main_menu():
         draw_text('Personalizado', font, (255, 255, 255), screen, 205, 330)
         draw_text('¿Como jugar?', font, (255, 255, 255), screen, 35, 458)
         draw_text('Salir', font, (255, 255, 255), screen, 420, 458)
-        if button_1.collidepoint((mx, my)) and click:
+        if button_1.collidepoint((mx, my)):
             game(1)
-        if button_2.collidepoint((mx, my)) and click:
+        if button_2.collidepoint((mx, my)):
             game(2)
-        if button_3.collidepoint((mx, my)) and click:
+        if button_3.collidepoint((mx, my)):
             game(3)
-        if button_4.collidepoint((mx, my)) and click:
+        if button_4.collidepoint((mx, my)):
             game(4)
-        if button_5.collidepoint((mx, my)) and click:
+        if button_5.collidepoint((mx, my)):
             instrucciones()
-        if button_6.collidepoint((mx, my)) and click:
+        if button_6.collidepoint((mx, my)):
             pygame.quit()
             sys.exit()
         click = False
