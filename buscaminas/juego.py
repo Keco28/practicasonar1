@@ -3,15 +3,15 @@ import os
 from time import sleep
 
 class Juego():
-    def __init__(self, tablero, tamaño_pantalla):
+    def __init__(self, tablero, TAMAÑO_PANTALLA):
         self.tablero = tablero
-        self.tamaño_pantalla = tamaño_pantalla
-        self.tamañoImg = self.tamaño_pantalla[0] // self.tablero.getTamaño()[1], self.tamaño_pantalla[1] // self.tablero.getTamaño()[0]
+        self.TAMAÑO_PANTALLA = TAMAÑO_PANTALLA
+        self.tamañoImg = self.TAMAÑO_PANTALLA[0] // self.tablero.getTamaño()[1], self.TAMAÑO_PANTALLA[1] // self.tablero.getTamaño()[0]
         self.cargarImagenes()
 
     def run(self):                                                          #Método principal del juego
         pygame.init()
-        self.pantalla = pygame.display.set_mode(self.tamaño_pantalla)
+        self.pantalla = pygame.display.set_mode(self.TAMAÑO_PANTALLA)
         jugando = True
         while jugando:                                                      #While principal del juego
             for evento in pygame.event.get():                               #Se revisa cada evento del juego hasta que se llegue a alguno de los posibles finales

@@ -53,37 +53,29 @@ def main_menu():
         draw_text('Personalizado', font, (255, 255, 255), screen, 205, 330)
         draw_text('¿Como jugar?', font, (255, 255, 255), screen, 35, 458)
         draw_text('Salir', font, (255, 255, 255), screen, 420, 458)
-        if button_1.collidepoint((mx, my)):
-            if click:
-                game(1)
-        if button_2.collidepoint((mx, my)):
-            if click:
-                game(2)
-        if button_3.collidepoint((mx, my)):
-            if click:
-                game(3)
-        if button_4.collidepoint((mx, my)):
-            if click:
-                game(4)
-        if button_5.collidepoint((mx, my)):
-            if click:
-                instrucciones()
-        if button_6.collidepoint((mx, my)):
-            if click:
-                pygame.quit()
-                sys.exit()
+        if button_1.collidepoint((mx, my)) and click:
+            game(1)
+        if button_2.collidepoint((mx, my)) and click:
+            game(2)
+        if button_3.collidepoint((mx, my)) and click:
+            game(3)
+        if button_4.collidepoint((mx, my)) and click:
+            game(4)
+        if button_5.collidepoint((mx, my)) and click:
+            instrucciones()
+        if button_6.collidepoint((mx, my)) and click:
+            pygame.quit()
+            sys.exit()
         click = False
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click = True
+            if event.type == KEYDOWN and event.key == K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+            if event.type == MOUSEBUTTONDOWN and event.button == 1:
+                click = True
 
         pygame.display.update()
         mainClock.tick(60)
@@ -112,8 +104,7 @@ def game(i):
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
+            if event.type == KEYDOWN and event.key == K_ESCAPE:
                     running = False
 
         pygame.display.update()
@@ -154,8 +145,7 @@ def instrucciones():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
+            if event.type == KEYDOWN and event.key == K_ESCAPE:
                     running = False
 
         pygame.display.update()
