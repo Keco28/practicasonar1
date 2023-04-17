@@ -1,7 +1,7 @@
 import matEnTripletas
 import unittest
 
-class testBuscaminas(unittest.TestCase):
+class TestBuscaminas(unittest.TestCase):
     
     def tripleta_test(self):
         self.assertIs(list[0])

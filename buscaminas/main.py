@@ -13,6 +13,7 @@ pygame.display.set_caption('game base')
 screen = pygame.display.set_mode((500, 500), 0, 32)
 font = pygame.font.SysFont(None, 20)
 
+msj1 = "ingrese los datos en numeros"
 
 def draw_text(text, font, color, surface, x, y):
     textobj = font.render(text, 1, color)
@@ -95,9 +96,9 @@ def game(i):
         elif i == 4:
             sc = turtle.Screen()
             sc.setup(300, 300)
-            n = int(turtle.textinput("ingrese los datos en numeros", "filas"))
-            m = int(turtle.textinput("ingrese los datos en numeros", "columnas"))
-            k = int(turtle.textinput("ingrese los datos en numeros", "bombas"))
+            n = int(turtle.textinput(msj1, "filas"))
+            m = int(turtle.textinput(msj1, "columnas"))
+            k = int(turtle.textinput(msj1, "bombas"))
             sc.bye()
             tablero(n, m, k)
         for event in pygame.event.get():
