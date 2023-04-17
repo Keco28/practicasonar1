@@ -6,7 +6,7 @@ class Juego():
     def __init__(self, tablero, TamañoPantalla):
         self.tablero = tablero
         self.TamañoPantalla = TamañoPantalla
-        self.TamañoImg = self.TamañoPantalla[0] // self.tablero.getTamaño()[1], self.TamañoPantalla[1] // self.tablero.getTamaño()[0]
+        self.TamanoImg = self.TamañoPantalla[0] // self.tablero.getTamaño()[1], self.TamañoPantalla[1] // self.tablero.getTamaño()[0]
         self.cargarImagenes()
 
     def run(self):                                                          #Método principal del juego
@@ -38,8 +38,8 @@ class Juego():
                 pieza = self.tablero.getPieza((fila, col))
                 imagen = self.getImagen(pieza)
                 self.pantalla.blit(imagen, topIzq)
-                topIzq = topIzq[0] + self.tamañoImg[0], topIzq[1]
-            topIzq = 0, topIzq[1] + self.tamañoImg[1]
+                topIzq = topIzq[0] + self.TamanoImg[0], topIzq[1]
+            topIzq = 0, topIzq[1] + self.TamanoImg[1]
 
     def cargarImagenes(self):                                               #Crea un diccionario con todas las imágenes disponibles para su previo acceso
         self.imagenes = {}
@@ -47,7 +47,7 @@ class Juego():
             if(not archivo.endswith(".png")):
                 continue
             imagen = pygame.image.load(r"imagenes/" + archivo)
-            imagen = pygame.transform.scale(imagen, self.tamañoImg)
+            imagen = pygame.transform.scale(imagen, self.TamanoImg)
             self.imagenes[archivo.split(".")[0]] = imagen
 
     def getImagen(self, pieza):                                             #Devuelve la imagen correspondiente al evento disparado sobre una pieza
@@ -60,7 +60,7 @@ class Juego():
     def handleClick(self, posicion, ClickDerecho):
         if(self.tablero.getLost()):
             return
-        index = posicion[1] // self.tamañoImg[1], posicion[0] // self.tamañoImg[0]
+        index = posicion[1] // self.TamanoImg[1], posicion[0] // self.TamanoImg[0]
         #print(index)
         pieza = self.tablero.getPieza(index)
         self.tablero.handleClick(pieza, ClickDerecho)
