@@ -3,15 +3,15 @@ import os
 from time import sleep
 
 class Juego():
-    def __init__(self, tablero, TAMANO_PANTALLA):
+    def __init__(self, tablero, TamañoPantalla):
         self.tablero = tablero
-        self.TAMANO_PANTALLA = TAMANO_PANTALLA
-        self.tamañoImg = self.TAMANO_PANTALLA[0] // self.tablero.getTamaño()[1], self.TAMANO_PANTALLA[1] // self.tablero.getTamaño()[0]
+        self.TamañoPantalla = TamañoPantalla
+        self.TamañoImg = self.TamañoPantalla[0] // self.tablero.getTamaño()[1], self.TamañoPantalla[1] // self.tablero.getTamaño()[0]
         self.cargarImagenes()
 
     def run(self):                                                          #Método principal del juego
         pygame.init()
-        self.pantalla = pygame.display.set_mode(self.TAMANO_PANTALLA)
+        self.pantalla = pygame.display.set_mode(self.TamañoPantalla)
         jugando = True
         while jugando:                                                      #While principal del juego
             for evento in pygame.event.get():                               #Se revisa cada evento del juego hasta que se llegue a alguno de los posibles finales
@@ -19,8 +19,8 @@ class Juego():
                     jugando = False
                 if(evento.type == pygame.MOUSEBUTTONDOWN):                  #Se revisa el click hecho sobre el tablero
                     posicion = pygame.mouse.get_pos()
-                    clickDerecho = pygame.mouse.get_pressed()[2]            #True si fue click derecho (Colocar una bandera)
-                    self.handleClick(posicion, clickDerecho)                #Se envían los parámetros correspondientes a este click
+                    ClickDerecho = pygame.mouse.get_pressed()[2]            #True si fue click derecho (Colocar una bandera)
+                    self.handleClick(posicion, ClickDerecho)                #Se envían los parámetros correspondientes a este click
             self.dibujar()
             pygame.display.flip()
             if(self.tablero.getGanar()):                                    #Si el número de casillas clickeadas es igual al número de casillas donde no hay bombas
@@ -32,9 +32,9 @@ class Juego():
 
     def dibujar(self):                                                      #Se encarga de dibujar en el tablero principal del juego
         topIzq = (0, 0)                                                     #La imagen correspondiente a la acción hecha
-        tamaño = self.tablero.getTamaño()
-        for fila in range(tamaño[0]):
-            for col in range(tamaño[1]):
+        Tamaño = self.tablero.getTamaño()
+        for fila in range(Tamaño[0]):
+            for col in range(Tamaño[1]):
                 pieza = self.tablero.getPieza((fila, col))
                 imagen = self.getImagen(pieza)
                 self.pantalla.blit(imagen, topIzq)
@@ -57,10 +57,10 @@ class Juego():
             string = "flag" if pieza.getFlagged() else "empty-block"
         return self.imagenes[string]
 
-    def handleClick(self, posicion, clickDerecho):
+    def handleClick(self, posicion, ClickDerecho):
         if(self.tablero.getLost()):
             return
         index = posicion[1] // self.tamañoImg[1], posicion[0] // self.tamañoImg[0]
         #print(index)
         pieza = self.tablero.getPieza(index)
-        self.tablero.handleClick(pieza, clickDerecho)
+        self.tablero.handleClick(pieza, ClickDerecho)
