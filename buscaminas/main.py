@@ -146,7 +146,7 @@ def instrucciones():
                 pygame.quit()
                 sys.exit()
             if event.type == KEYDOWN and event.key == K_ESCAPE:
-                    running = False
+                running = False
 
         pygame.display.update()
         mainClock.tick(60)
